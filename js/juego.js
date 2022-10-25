@@ -1,7 +1,6 @@
 let deck=[];
 const tipos=      ['C','D','H','S'];
 const especiales= ['A','J','Q','K'];
-
 let puntosjugador=0,
     puntoscomputadora=0;
 
@@ -56,30 +55,48 @@ const turnocomputadora=(puntosminimos)=>{
         const carta=pedirCarta();    
         puntoscomputadora=puntoscomputadora + valorCarta(carta);
         puntoshtml[1].innerText=puntoscomputadora;
-        
         const imgCarta=document.createElement('img');
         imgCarta.src= `cartas/${carta}.png`;
         imgCarta.classList.add('carta');
         cartascomputadora.append(imgCarta);        
-
         if (puntosminimos>21) {
             break;
         }
-
     }while( (puntoscomputadora<puntosminimos) && (puntosminimos<=21) );
-
     setTimeout( () => {
-
         if (puntoscomputadora===puntosminimos) {
-            alert('Nadie gana, empate!!');
+            Swal.fire({
+                title: 'Parece uun empate',
+                text: 'Nadie gana',
+                icon: 'info',
+                showConfirmButton: false,
+                timer: 5000
+              });
         }else if(puntosminimos>21){
-            alert('Computadora Gana!');
+            Swal.fire({
+                title: 'Has perdido :(',
+                text: 'La computadora gano',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 5000
+              });
         }else if(puntoscomputadora>21){
-            alert('Ganaste!!');
+            Swal.fire({
+                title: 'Has Ganado :)',
+                text: 'Felicidades ganaste!!',
+                icon: 'success',
+                showConfirmButton:false,
+                timer: 5000
+              });
         }else{
-            alert('Computadora Gana');
+            Swal.fire({
+                title: 'Has perdido :(',
+                text: 'La computadora gano',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 5000
+              });
         }
-
     }, 10);
 }
 
